@@ -50,3 +50,8 @@ def login(request):
 
 def posts(request):
     return render(request, 'blog/posts.html')
+
+
+def post_detail(request):
+    return render(request, 'blog/post_detail.html')
+

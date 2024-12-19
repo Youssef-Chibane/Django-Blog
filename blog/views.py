@@ -49,12 +49,20 @@ def login(request):
 
     return render(request, 'blog/login.html', context=context)
 
+
+def logout(request):
+
+    auth.logout(request)
+    return redirect("home")
+
+
+@login_required(login_url='login')
 def posts(request):
     posts = Post.objects.all()
     context = {'posts': posts}
     return render(request, 'blog/posts.html', context=context)
 
-
+@login_required(login_url='login')
 def post_detail(request, pk):
     post = Post.objects.get(id=pk)
     context = {'post': post}

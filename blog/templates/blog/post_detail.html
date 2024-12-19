@@ -1,32 +1,30 @@
 {% extends "blog/base.html" %}
 {% block content %}
-        <!-- Blog Post Detail Section -->
-        <main class="py-12 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <div class="mx-auto w-full md:w-3/4 lg:w-2/3">
-                    <!-- Post Header -->
-                    <div class="mb-8">
-                        <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ post.title }}</h1>
-                        <p class="text-gray-600">
-                            Published on 
-                            <span class="font-medium">{{ post.published_date }}</span> 
-                            by 
-                            <span class="font-medium text-blue-600 hover:underline">{{ post.published_by }}</span>
-                        </p>
-                    </div>
-
-                    <!-- Post Image -->
-                    <div class="mb-8">
-                        <img src="{{ post.cover }}" alt="Blog Post Image" class="w-full h-96 object-cover rounded-lg shadow-md" />
-                    </div>
-
-                    <!-- Post Content -->
-                    <div class="bg-white p-8 rounded-lg shadow-md">
-                        <p class="text-gray-800 leading-relaxed mb-4">
-                            {{ post.body }}
-                        </p>
-                    </div>
+    <!-- Blog Post Detail Section -->
+    <main class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="mx-auto w-full md:w-3/4 lg:w-2/3">
+                <!-- Post Header -->
+                <div class="mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ post.title }}</h1>
+                    <p class="text-gray-600">
+                        Published on
+                        <span class="font-medium">{{ post.published_date }}</span>
+                        by
+                        <span class="font-medium text-blue-600 hover:underline">{{ post.published_by }}</span>
+                    </p>
+                </div>
+                <!-- Post Image -->
+                <div class="mb-8">
+                    <img src="{{ post.cover }}"
+                         alt="Blog Post Image"
+                         class="w-full h-96 object-cover rounded-lg shadow-md" />
+                </div>
+                <!-- Post Content -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <p class="text-gray-800 leading-relaxed mb-4">{{ post.body }}</p>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 {% endblock content %}

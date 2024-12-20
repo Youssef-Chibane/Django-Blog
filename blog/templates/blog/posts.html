@@ -20,6 +20,45 @@
                     </div>
                 {% endfor %}
             </div>
+<!-- Pagination Controls -->
+<div class="mt-10 flex justify-center">
+    <nav>
+        <ul class="flex space-x-2">
+            <!-- First and Previous -->
+            {% if posts.has_previous %}
+            <li>
+                <a href="?page=1" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">First</a>
+            </li>
+            <li>
+                <a href="?page={{ posts.previous_page_number }}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Previous</a>
+            </li>
+            {% endif %}
+
+            <!-- Page Numbers -->
+            {% for page in posts.paginator.page_range %}
+            {% if page == posts.number %}
+            <li>
+                <span class="px-3 py-1 bg-blue-500 text-white rounded">{{ page }}</span>
+            </li>
+            {% elif page >= posts.number|add:'-2' and page <= posts.number|add:'2' %}
+            <li>
+                <a href="?page={{ page }}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">{{ page }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            <!-- Next and Last -->
+            {% if posts.has_next %}
+            <li>
+                <a href="?page={{ posts.next_page_number }}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Next</a>
+            </li>
+            <li>
+                <a href="?page={{ posts.paginator.num_pages }}" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">Last</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
         </div>
     </section>
 {% endblock content %}

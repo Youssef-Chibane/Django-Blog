@@ -7,7 +7,9 @@ from .models import Post
 
 
 def home(request):
-    return render(request, 'blog/home.html')
+    posts = Post.objects.all().order_by('-created_at')[:6]
+    context = {'posts': posts}
+    return render(request, 'blog/home.html', context=context)
 
 
 def signup(request):
@@ -58,7 +60,7 @@ def logout(request):
 
 @login_required(login_url='login')
 def posts(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created_at')
     context = {'posts': posts}
     return render(request, 'blog/posts.html', context=context)
 

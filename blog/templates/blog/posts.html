@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
+    {% include 'blog/navbar.html' %}
     <!-- Blog Post Highlights -->
     <section id="latest" class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
@@ -64,4 +65,5 @@
             </div>
         </div>
     </section>
+    {% include 'blog/footer.html' %}
 {% endblock content %}

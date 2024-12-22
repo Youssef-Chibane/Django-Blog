@@ -7,58 +7,60 @@ from .models import Post
 from django.core.paginator import Paginator
 
 
+# Function to check if a user is authenticated and redirect accordingly
+def redirect_if_authenticated(user):
+    return not user.is_authenticated
+
+
+# View for the home page, showing the latest 6 posts
 def home(request):
     posts = Post.objects.all().order_by('-created_at')[:6]
     context = {'posts': posts}
     return render(request, 'blog/home.html', context=context)
 
 
+# Signup view, accessible only to unauthenticated users
+@user_passes_test(redirect_if_authenticated, login_url='home')
 def signup(request):
     form = CreateUserForm()
 
     if request.method == "POST":
-
         form = CreateUserForm(request.POST)
-
         if form.is_valid():
             form.save()
             return redirect("login")
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'blog/signup.html', context=context)
 
 
+# Login view, accessible only to unauthenticated users
+@user_passes_test(redirect_if_authenticated, login_url='home')
 def login(request):
     form = LoginForm()
 
     if request.method == "POST":
-
         form = LoginForm(request, data=request.POST)
-
         if form.is_valid():
-
             username = request.POST.get('username')
             password = request.POST.get('password')
 
             user = authenticate(request, username=username, password=password)
-
             if user is not None:
-
                 auth.login(request, user)
-
                 return redirect("home")
 
-    context = {'form':form}
-
+    context = {'form': form}
     return render(request, 'blog/login.html', context=context)
 
 
+# Logout view to log the user out and redirect to the home page
 def logout(request):
-
     auth.logout(request)
     return redirect("home")
 
 
+# View to display a paginated list of posts, accessible only to authenticated users
 @login_required(login_url='login')
 def posts(request):
     posts_list = Post.objects.all().order_by('-created_at')
@@ -69,15 +71,17 @@ def posts(request):
     return render(request, 'blog/posts.html', context=context)
 
 
+# View to display the details of a specific post, accessible only to authenticated users
 @login_required(login_url='login')
 def post_detail(request, pk):
     post = Post.objects.get(id=pk)
     context = {'post': post}
     return render(request, 'blog/post_detail.html', context=context)
 
+
+# View to create a new post, accessible only to authenticated users
 @login_required(login_url='login')
 def create_post(request):
-
     form = CreatePostForm()
 
     if request.method == "POST":
@@ -92,9 +96,9 @@ def create_post(request):
     return render(request, 'blog/create_post.html', context=context)
 
 
+# View to update an existing post, accessible only to authenticated users
 @login_required(login_url='login')
 def update_post(request, pk):
-
     post = Post.objects.get(id=pk)
     form = UpdatePostForm(instance=post)
 

@@ -4,7 +4,14 @@
     <!-- Blog Post Highlights -->
     <section id="latest" class="py-12 bg-gray-100">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">All Posts</h2>
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">All Posts</h2>
+                <!-- New Post Button -->
+                <a href="{% url 'create' %}"
+                   class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700">
+                    + New Post
+                </a>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Post 1 -->
                 {% for post in posts %}
@@ -15,7 +22,7 @@
                         <div class="p-4">
                             <h3 class="text-xl font-bold text-gray-800 mb-2">{{ post.title }}</h3>
                             <p class="text-gray-600 mb-4">{{ post.body|truncatechars:90 }}</p>
-                            <a href="{% url 'post_detail' post.id %}"
+                            <a href="{% url 'detail' post.id %}"
                                class="text-blue-600 hover:underline font-medium">Read More</a>
                         </div>
                     </div>

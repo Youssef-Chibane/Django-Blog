@@ -29,7 +29,7 @@
                         <div class="p-4">
                             <h3 class="text-xl font-bold text-gray-800 mb-2">{{ post.title }}</h3>
                             <p class="text-gray-600 mb-4">{{ post.body|truncatechars:90 }}</p>
-                            <a href="{% url 'post_detail' post.id %}"
+                            <a href="{% url 'detail' post.id %}"
                                class="text-blue-600 hover:underline font-medium">Read More</a>
                         </div>
                     </div>

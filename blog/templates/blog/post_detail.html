@@ -2,29 +2,29 @@
 {% block content %}
     {% include 'blog/navbar.html' %}
     <!-- Blog Post Detail Section -->
-    <main class="py-12 bg-gray-100">
-        <div class="container mx-auto px-4">
+    <main class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
             <div class="mx-auto w-full md:w-3/4 lg:w-2/3">
-                <!-- Post Header -->
-                <div class="mb-8">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">{{ post.title }}</h1>
-                    <p class="text-gray-600">
+                <!-- Hero Section -->
+                <section class="text-center mb-12">
+                    <h1 class="text-5xl font-extrabold text-gray-900 leading-tight mb-6">{{ post.title }}</h1>
+                    <p class="text-gray-600 text-lg">
                         Published on
-                        <span class="font-medium">{{ post.created_at }}</span>
+                        <span class="font-semibold">{{ post.created_at }}</span>
                         by
-                        <span class="font-medium text-blue-600 hover:underline">{{ post.published_by }}</span>
+                        <a href="#" class="font-semibold text-blue-600 hover:underline">{{ post.published_by }}</a>
                     </p>
-                </div>
+                </section>
                 <!-- Post Image -->
-                <div class="mb-8">
+                <div class="mb-10">
                     <img src="{{ post.cover }}"
                          alt="Blog Post Image"
-                         class="w-full h-96 object-cover rounded-lg shadow-md" />
+                         class="w-full h-96 object-cover rounded-lg shadow-lg" />
                 </div>
                 <!-- Post Content -->
-                <div class="bg-white p-8 rounded-lg shadow-md">
-                    <p class="text-gray-800 leading-relaxed mb-4">{{ post.body }}</p>
-                </div>
+                <article class="bg-white p-10 rounded-lg shadow-lg">
+                    <p class="text-gray-800 text-lg leading-relaxed mb-6">{{ post.body }}</p>
+                </article>
             </div>
         </div>
     </main>

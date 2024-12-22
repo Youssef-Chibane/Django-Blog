@@ -110,3 +110,13 @@ def update_post(request, pk):
 
     context = {'form': form}
     return render(request, 'blog/update_post.html', context=context)
+
+# View to update an existing post, accessible only to authenticated users
+@login_required(login_url='login')
+def delete_post(request, pk):
+
+    post = Post.objects.get(id=pk)
+
+    post.delete()
+
+    return redirect("posts")

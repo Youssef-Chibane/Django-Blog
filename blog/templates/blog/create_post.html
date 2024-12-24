@@ -7,7 +7,7 @@
             <!-- Title -->
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Create Post</h2>
             <!-- Form -->
-            <form action="#" method="POST" class="space-y-6">
+            <form action="#" method="POST" enctype="multipart/form-data" class="space-y-6">
                 {% csrf_token %}
                 <!-- Title Input -->
                 <div>
@@ -22,7 +22,7 @@
                 <!-- Cover Input -->
                 <div>
                     <label for="cover" class="block text-gray-700 font-medium mb-2">Cover</label>
-                    <input type="text"
+                    <input type="file"
                            name="cover"
                            id="cover"
                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

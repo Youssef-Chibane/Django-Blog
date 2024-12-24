@@ -85,7 +85,7 @@ def create_post(request):
     form = CreatePostForm()
 
     if request.method == "POST":
-        form = CreatePostForm(request.POST)
+        form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)  # Don't save to the database yet
             post.published_by = request.user  # Assign the logged-in user

@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% include 'blog/navbar.html' %}
+    <!-- Blog Post Detail Section -->
+    <main class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="mx-auto w-full md:w-3/4 lg:w-2/3">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">About Us</h1>
+                <!-- Post Content -->
+                <article class="bg-white p-10 rounded-lg shadow-lg">
+                    <p class="text-gray-600 max-w-3xl mx-auto mb-6">
+                        Welcome to our blog! We are passionate about sharing knowledge, insights,
+                        and stories that inspire and empower our readers. Our mission is to create a
+                        platform where ideas flourish and communities connect.
+                    </p>
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        Our team of expert writers and contributors work tirelessly to bring you
+                        high-quality content that informs, educates, and entertains. Join us on this
+                        journey of discovery and growth.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </main>
+    {% include 'blog/footer.html' %}
+{% endblock content %}

@@ -150,3 +150,11 @@ def delete_post(request, pk):
 
     post.delete()
     return redirect("posts")
+
+
+def about(request):
+    return render(request, 'blog/about.html')
+
+
+def contact(request):
+    return render(request, 'blog/contact.html')

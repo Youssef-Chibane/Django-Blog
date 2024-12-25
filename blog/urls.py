@@ -13,6 +13,8 @@ urlpatterns = [
     path('post/<int:pk>/detail', views.post_detail, name='detail'),
     path('post/<int:pk>/update', views.update_post, name='update'),
     path('post/<int:pk>/delete', views.delete_post, name='delete'),
+    path('contact', views.contact, name='contact'),
+    path('about', views.about, name='about'),
 ]
 
 

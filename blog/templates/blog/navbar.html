@@ -10,6 +10,10 @@
                 <a href="{% url 'about' %}" class="text-gray-700 hover:text-blue-600">About</a>
                 <a href="{% url 'posts' %}" class="text-gray-700 hover:text-blue-600">Posts</a>
                 <a href="{% url 'contact' %}" class="text-gray-700 hover:text-blue-600">Contact</a>
+                {% else %}
+                <a href="{% url 'home' %}" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="{% url 'about' %}" class="text-gray-700 hover:text-blue-600">About</a>
+                <a href="{% url 'contact' %}" class="text-gray-700 hover:text-blue-600">Contact</a>
             {% endif %}
             <div class="space-x-4">
                 {% if request.user.is_authenticated %}

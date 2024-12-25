@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Post
 from django.core.paginator import Paginator
+from django.http import HttpResponseForbidden
 
 
 # Function to check if a user is authenticated and redirect accordingly
@@ -96,10 +97,38 @@ def create_post(request):
     return render(request, 'blog/create_post.html', context=context)
 
 
-# View to update an existing post, accessible only to authenticated users
+# # View to update an existing post, accessible only to authenticated users
+# @login_required(login_url='login')
+# def update_post(request, pk):
+#     post = Post.objects.get(id=pk)
+#     form = UpdatePostForm(instance=post)
+
+#     if request.method == "POST":
+#         form = UpdatePostForm(request.POST, instance=post)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("posts")
+
+#     context = {'form': form}
+#     return render(request, 'blog/update_post.html', context=context)
+
+# # View to update an existing post, accessible only to authenticated users
+# @login_required(login_url='login')
+# def delete_post(request, pk):
+
+#     post = Post.objects.get(id=pk)
+
+#     post.delete()
+
+#     return redirect("posts")
+
 @login_required(login_url='login')
 def update_post(request, pk):
     post = Post.objects.get(id=pk)
+    # Check if the logged-in user is the owner of the post
+    if post.published_by != request.user:
+        return HttpResponseForbidden("You are not allowed to update this post.")
+
     form = UpdatePostForm(instance=post)
 
     if request.method == "POST":
@@ -111,12 +140,13 @@ def update_post(request, pk):
     context = {'form': form}
     return render(request, 'blog/update_post.html', context=context)
 
-# View to update an existing post, accessible only to authenticated users
+
 @login_required(login_url='login')
 def delete_post(request, pk):
-
     post = Post.objects.get(id=pk)
+    # Check if the logged-in user is the owner of the post
+    if post.published_by != request.user:
+        return HttpResponseForbidden("You are not allowed to delete this post.")
 
     post.delete()
-
     return redirect("posts")

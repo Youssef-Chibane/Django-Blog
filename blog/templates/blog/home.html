@@ -35,6 +35,13 @@
                     </div>
                 {% endfor %}
             </div>
+                <!-- View All Posts Button -->
+                <div class="text-center mt-10">
+                    <a href="{% url 'posts' %}"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">
+                        View All Posts
+                    </a>
+                </div>
         </div>
     </section>
     {% include 'blog/footer.html' %}

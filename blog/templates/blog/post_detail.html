@@ -2,7 +2,7 @@
 {% block content %}
     {% include 'blog/navbar.html' %}
     <!-- Blog Post Detail Section -->
-    <main class="py-16 bg-gray-50">
+    <main class="py-10 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="mx-auto w-full md:w-3/4 lg:w-2/3">
                 <!-- Hero Section -->
@@ -25,7 +25,7 @@
                 <article class="bg-white p-10 rounded-lg shadow-lg">
                     <p class="text-gray-800 text-lg leading-relaxed mb-6">{{ post.body }}</p>
                 </article>
-                <div class="mt-10 flex justify-center space-x-4">
+                <div class="mt-12 flex justify-center space-x-4">
                     {% if post.published_by == user %}
                         <a href="{% url 'update' post.id %}"
                            class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Update</a>

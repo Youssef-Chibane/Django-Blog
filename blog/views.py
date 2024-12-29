@@ -129,17 +129,17 @@ def update_post(request, pk):
     if post.published_by != request.user:
         return HttpResponseForbidden("You are not allowed to update this post.")
 
-    form = UpdatePostForm(instance=post)
-
+    # Use request.FILES to handle file inputs
     if request.method == "POST":
-        form = UpdatePostForm(request.POST, instance=post)
+        form = UpdatePostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect("posts")
+    else:
+        form = UpdatePostForm(instance=post)
 
     context = {'form': form}
     return render(request, 'blog/update_post.html', context=context)
-
 
 @login_required(login_url='login')
 def delete_post(request, pk):
